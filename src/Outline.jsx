@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { h, Component } from 'preact';
 import mergeClassNames from 'merge-class-names';
 
 import {
@@ -9,7 +8,6 @@ import {
 } from './shared/util';
 import { makeEventProps } from './shared/events';
 
-import { eventsProps } from './shared/propTypes';
 
 class Ref {
   constructor({ num, gen }) {
@@ -215,15 +213,10 @@ export default class Outline extends Component {
     );
   }
 
-  render() {
-    const { pdf } = this.props;
-    const { outline } = this.state;
-
+  render({ pdf }, { outline, className }) {
     if (!pdf || !outline) {
       return null;
     }
-
-    const { className } = this.props;
 
     return (
       <div
@@ -235,20 +228,3 @@ export default class Outline extends Component {
     );
   }
 }
-
-Outline.propTypes = {
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
-  onItemClick: PropTypes.func,
-  onLoadError: PropTypes.func,
-  onLoadSuccess: PropTypes.func,
-  onParseError: PropTypes.func,
-  onParseSuccess: PropTypes.func,
-  pdf: PropTypes.shape({
-    getDestination: PropTypes.func.isRequired,
-    getOutline: PropTypes.func.isRequired,
-  }),
-  ...eventsProps(),
-};

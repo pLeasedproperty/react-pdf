@@ -1,8 +1,7 @@
 /**
  * Loads a PDF document. Passes it to all children.
  */
-import React, { Children, Component } from 'react';
-import PropTypes from 'prop-types';
+import { h, Component, cloneElement } from 'preact';
 import mergeClassNames from 'merge-class-names';
 
 import {
@@ -18,8 +17,6 @@ import {
   makeCancellable,
 } from './shared/util';
 import { makeEventProps } from './shared/events';
-
-import { eventsProps } from './shared/propTypes';
 
 export default class Document extends Component {
   state = {
@@ -40,10 +37,6 @@ export default class Document extends Component {
     if (this.runningTask && this.runningTask.cancel) {
       this.runningTask.cancel();
     }
-  }
-
-  get eventProps() {
-    return makeEventProps(this.props, this.state.pdf);
   }
 
   /**
@@ -277,21 +270,16 @@ export default class Document extends Component {
         {...this.eventProps}
       >
         {
-          children && Children
-            .map(children, child => React.cloneElement(child, childProps))
+          children && children.map( child => cloneElement(child, childProps))
         }
       </div>
     );
   }
 
-  render() {
-    const { file } = this.props;
-
+  render({ file }, { pdf }) {
     if (!file) {
       return this.renderNoData();
     }
-
-    const { pdf } = this.state;
 
     if (pdf === null) {
       return this.renderLoader();
@@ -309,40 +297,4 @@ Document.defaultProps = {
   error: 'Failed to load PDF file.',
   loading: 'Loading PDF…',
   noData: 'No PDF file specified.',
-};
-
-const fileTypes = [
-  PropTypes.string,
-  PropTypes.instanceOf(ArrayBuffer),
-  PropTypes.shape({
-    data: PropTypes.object,
-    httpHeaders: PropTypes.object,
-    range: PropTypes.object,
-    url: PropTypes.string,
-    withCredentials: PropTypes.bool,
-  }),
-];
-if (typeof File !== 'undefined') {
-  fileTypes.push(PropTypes.instanceOf(File));
-}
-if (typeof Blob !== 'undefined') {
-  fileTypes.push(PropTypes.instanceOf(Blob));
-}
-
-Document.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
-  error: PropTypes.node,
-  file: PropTypes.oneOfType(fileTypes),
-  loading: PropTypes.node,
-  noData: PropTypes.node,
-  onLoadError: PropTypes.func,
-  onLoadSuccess: PropTypes.func,
-  onSourceError: PropTypes.func,
-  onSourceSuccess: PropTypes.func,
-  rotate: PropTypes.number,
-  ...eventsProps(),
 };

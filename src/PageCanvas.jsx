@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { h, Component } from 'preact';
 
 import {
   callIfDefined,
@@ -101,14 +100,3 @@ export default class PageCanvas extends Component {
     );
   }
 }
-
-PageCanvas.propTypes = {
-  onRenderError: PropTypes.func,
-  onRenderSuccess: PropTypes.func,
-  page: PropTypes.shape({
-    getViewport: PropTypes.func.isRequired,
-    render: PropTypes.func.isRequired,
-  }).isRequired,
-  rotate: PropTypes.number,
-  scale: PropTypes.number,
-};

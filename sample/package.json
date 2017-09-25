@@ -11,8 +11,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "react": ">=15.5",
-    "react-dom": ">=15.5",
+    "preact": "^8.2.5",
     "react-pdf": "../"
   },
   "devDependencies": {

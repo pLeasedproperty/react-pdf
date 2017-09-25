@@ -6,10 +6,10 @@
         "modules": false
       }
     ],
-    "stage-2",
-    "react"
+    "stage-2"
   ],
   "plugins": [
+    ["transform-react-jsx", { "pragma": "h" }],
     "transform-runtime",
     "transform-class-properties",
     "transform-es2015-modules-commonjs"

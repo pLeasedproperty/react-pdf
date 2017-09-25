@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { h, Component } from 'preact';
 
 import {
   callIfDefined,
@@ -158,8 +157,7 @@ export default class PageTextContent extends Component {
     return textItems.map(this.renderTextItem);
   }
 
-  render() {
-    const { rotate } = this.props;
+  render({ rotate }) {
     const { unrotatedViewport: viewport } = this;
 
     return (
@@ -180,20 +178,3 @@ export default class PageTextContent extends Component {
     );
   }
 }
-
-PageTextContent.propTypes = {
-  onGetTextError: PropTypes.func,
-  onGetTextSuccess: PropTypes.func,
-  page: PropTypes.shape({
-    commonObjs: PropTypes.shape({
-      objs: PropTypes.object.isRequired,
-    }).isRequired,
-    getTextContent: PropTypes.func.isRequired,
-    getViewport: PropTypes.func.isRequired,
-    transport: PropTypes.shape({
-      fontLoader: PropTypes.object.isRequired,
-    }).isRequired,
-  }).isRequired,
-  rotate: PropTypes.number,
-  scale: PropTypes.number,
-};

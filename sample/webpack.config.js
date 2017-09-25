@@ -7,6 +7,7 @@ module.exports = {
   entry: [
     './Sample',
   ],
+  devtool: 'eval',
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].bundle.js',
@@ -34,7 +35,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production'),
+        NODE_ENV: JSON.stringify('development'),
       },
     }),
     new webpack.optimize.UglifyJsPlugin(),

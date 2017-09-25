@@ -1,6 +1,19 @@
-![downloads](https://img.shields.io/npm/dt/react-pdf.svg) ![build](https://img.shields.io/travis/wojtekmaj/react-pdf.svg) ![dependencies](https://img.shields.io/david/wojtekmaj/react-pdf.svg
-) ![dev dependencies](https://img.shields.io/david/dev/wojtekmaj/react-pdf.svg
-)
+# Preact-PDF
+This package is a direct port for Preact from [this project](http://projekty.wojtekmaj.pl/react-pdf).
+
+All credit goes to them for developing this for React.
+
+### Main changes
+* No React dependencies
+* React imports are changed to Preact imports
+* Removed PropTypes
+* `render` methods do object destructuring for state and props within `render` params
+
+Testing is not yet setup for Preact. The sample should work.
+
+The below content is from their README at the time of porting. Thanks!
+
+---
 
 # React-PDF
 Easily display PDF files in your React application.

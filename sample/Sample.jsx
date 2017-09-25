@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
+import { h, render, Component } from 'preact';
 import { Document, Page } from 'react-pdf/build/entry.webpack';
 
 import './Sample.less';
@@ -28,11 +27,10 @@ class Sample extends Component {
       pageNumber: prevState.pageNumber + by,
     }))
 
-  render() {
-    const { file, numPages } = this.state;
-
+  render({}, { file, numPages }) {
     return (
       <div className="Example">
+        <p>Fuck yeah!</p>
         <header>
           <h1>react-pdf sample page</h1>
         </header>

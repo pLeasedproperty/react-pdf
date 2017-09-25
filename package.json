@@ -1,7 +1,7 @@
 {
-  "name": "react-pdf",
-  "version": "2.1.2",
-  "description": "Easily display PDF files in your React application.",
+  "name": "preact-pdf",
+  "version": "1.0.0",
+  "description": "Easily display PDF files in your Preact application.",
   "main": "build/entry.js",
   "es6": "src/entry.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "keywords": [
     "pdf",
     "pdf-viewer",
-    "react"
+    "preact"
   ],
   "author": {
     "name": "Wojciech Maj",
@@ -27,6 +27,10 @@
     {
       "name": "Bart Van Houtte",
       "email": "bart.van.houtte@ading.be"
+    },
+    {
+      "name": "Callan Delbridge",
+      "email": "callan@pleasedproperty.com.au"
     }
   ],
   "license": "MIT",
@@ -34,9 +38,7 @@
     "lodash.once": "^4.1.1",
     "merge-class-names": "^1.1.0",
     "pdfjs-dist": "^1.9.564",
-    "prop-types": ">=15.5",
-    "react": ">=15.5",
-    "react-dom": ">=15.5",
+    "preact": "^8.2.5",
     "webpack": "^2.7.0"
   },
   "devDependencies": {
@@ -65,6 +67,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/wojtekmaj/react-pdf.git"
+    "url": "https://github.com/pLeasedproperty/react-pdf.git"
   }
 }

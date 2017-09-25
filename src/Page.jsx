@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { h, Component } from 'preact';
 import mergeClassNames from 'merge-class-names';
 
 import PageCanvas from './PageCanvas';
@@ -11,8 +10,6 @@ import {
   makeCancellable,
 } from './shared/util';
 import { makeEventProps } from './shared/events';
-
-import { eventsProps } from './shared/propTypes';
 
 export default class Page extends Component {
   state = {
@@ -167,9 +164,16 @@ export default class Page extends Component {
       .catch(this.onLoadError);
   }
 
-  render() {
-    const { pdf } = this.props;
-    const { page } = this.state;
+  render({
+    pdf,
+    children,
+    className,
+    onGetTextError,
+    onGetTextSuccess,
+    onRenderError,
+    onRenderSuccess,
+    renderTextLayer,
+  }, { page }) {
     const { pageIndex } = this;
 
     if (!pdf || !page) {
@@ -179,16 +183,6 @@ export default class Page extends Component {
     if (pageIndex < 0 || pageIndex > pdf.numPages) {
       return null;
     }
-
-    const {
-      children,
-      className,
-      onGetTextError,
-      onGetTextSuccess,
-      onRenderError,
-      onRenderSuccess,
-      renderTextLayer,
-     } = this.props;
 
     return (
       <div
@@ -222,29 +216,4 @@ export default class Page extends Component {
 Page.defaultProps = {
   renderTextLayer: true,
   scale: 1.0,
-};
-
-Page.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
-  onGetTextError: PropTypes.func,
-  onGetTextSuccess: PropTypes.func,
-  onLoadError: PropTypes.func,
-  onLoadSuccess: PropTypes.func,
-  onRenderError: PropTypes.func,
-  onRenderSuccess: PropTypes.func,
-  pageIndex: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
-  pageNumber: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
-  pdf: PropTypes.shape({
-    getPage: PropTypes.func.isRequired,
-    numPages: PropTypes.number.isRequired,
-  }),
-  renderTextLayer: PropTypes.bool,
-  rotate: PropTypes.number,
-  scale: PropTypes.number,
-  width: PropTypes.number,
-  ...eventsProps(),
 };
